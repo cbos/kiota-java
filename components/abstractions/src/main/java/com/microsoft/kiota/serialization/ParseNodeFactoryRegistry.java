@@ -12,7 +12,9 @@ import javax.annotation.Nonnull;
  */
 public class ParseNodeFactoryRegistry implements ParseNodeFactory {
     /** Default constructor for the registry. */
-    public ParseNodeFactoryRegistry() {}
+    public ParseNodeFactoryRegistry() {
+        // Default Constructor
+    }
     /** Default singleton instance of the registry to be used when registering new factories that should be available by default. */
     public static final ParseNodeFactoryRegistry defaultInstance = new ParseNodeFactoryRegistry();
     /** List of factories that are registered by content type. */

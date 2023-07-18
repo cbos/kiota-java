@@ -13,7 +13,9 @@ import javax.annotation.Nonnull;
 /** Creates new text parse nodes */
 public class TextParseNodeFactory implements ParseNodeFactory {
     /** Creates a new instance of the factory */
-    public TextParseNodeFactory() {}
+    public TextParseNodeFactory() {
+        // Default Constructor
+    }
     @Nonnull
     public String getValidContentType() {
         return validContentType;

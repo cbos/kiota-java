@@ -11,7 +11,9 @@ import javax.annotation.Nullable;
 /** This authentication provider does not perform any authentication. */
 public class AnonymousAuthenticationProvider implements AuthenticationProvider {
     /** Default constructor for the anonymous authentication provider. */
-    public AnonymousAuthenticationProvider() {}
+    public AnonymousAuthenticationProvider() {
+        // Default constructor
+    }
     /** {@inheritDoc} */
     @Nonnull
     public CompletableFuture<Void> authenticateRequest(@Nonnull final RequestInformation request, @Nullable final Map<String, Object> additionalAuthenticationContext) {

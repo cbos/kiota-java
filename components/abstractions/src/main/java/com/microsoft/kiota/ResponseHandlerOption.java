@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 public class ResponseHandlerOption implements RequestOption {
 	/** Creates a new instance of the option */
 	public ResponseHandlerOption() {
+		// Default Constructor
 	}
 	private ResponseHandler responseHandler;
 

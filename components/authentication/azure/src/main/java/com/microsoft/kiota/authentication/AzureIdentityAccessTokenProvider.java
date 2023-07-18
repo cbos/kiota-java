@@ -16,8 +16,6 @@ import javax.annotation.Nullable;
 import com.azure.core.credential.TokenCredential;
 import com.azure.core.credential.TokenRequestContext;
 
-import com.microsoft.kiota.authentication.AccessTokenProvider;
-
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Scope;
 import io.opentelemetry.api.GlobalOpenTelemetry;

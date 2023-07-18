@@ -7,7 +7,9 @@ import javax.annotation.Nonnull;
 /** Creates new text serialization writers */
 public class TextSerializationWriterFactory implements SerializationWriterFactory {
     /** Creates a new instance of the factory */
-    public TextSerializationWriterFactory() {}
+    public TextSerializationWriterFactory() {
+        // Default constructor
+    }
     @Nonnull
     public String getValidContentType() {
         return validContentType;

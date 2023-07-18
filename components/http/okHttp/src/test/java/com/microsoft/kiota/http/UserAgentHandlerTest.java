@@ -22,10 +22,10 @@ import org.junit.jupiter.api.Test;
 import com.microsoft.kiota.http.middleware.UserAgentHandler;
 import com.microsoft.kiota.http.middleware.options.UserAgentHandlerOption;
 
-public class UserAgentHandlerTest {
+class UserAgentHandlerTest {
 	private final Chain mockChain;
 	private final Response mockResponse;
-	public UserAgentHandlerTest() throws IOException {
+	UserAgentHandlerTest() throws IOException {
 		mockResponse = mock(Response.class);
 		when(mockResponse.code()).thenReturn(200);
 		when(mockResponse.message()).thenReturn("OK");
@@ -42,7 +42,7 @@ public class UserAgentHandlerTest {
 	});
 	}
 	@Test
-	public void addsTheProduct() throws IOException  {
+	void addsTheProduct() throws IOException  {
 		final UserAgentHandler handler = new UserAgentHandler();
 		final Request request = new Request.Builder().url("http://localhost").build();
 		when(mockChain.request()).thenReturn(request);
@@ -53,7 +53,7 @@ public class UserAgentHandlerTest {
 		assertEquals("kiota-java", result.header("User-Agent").split("/")[0]);
 	}
 	@Test
-	public void addsTheProductOnce() throws IOException  {
+	void addsTheProductOnce() throws IOException  {
 		final UserAgentHandler handler = new UserAgentHandler();
 		final Request request = new Request.Builder().url("http://localhost").build();
 		when(mockChain.request()).thenReturn(request);
@@ -65,7 +65,7 @@ public class UserAgentHandlerTest {
 		assertEquals(1, result.header("User-Agent").split("kiota-java").length - 1);
 	}
 	@Test
-	public void doesNotAddTheProductWhenDisabled() throws IOException  {
+	void doesNotAddTheProductWhenDisabled() throws IOException  {
 		final UserAgentHandler handler = new UserAgentHandler(new UserAgentHandlerOption() {{ setEnabled(false); }});
 		final Request request = new Request.Builder().url("http://localhost").build();
 		when(mockChain.request()).thenReturn(request);

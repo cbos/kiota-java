@@ -4,7 +4,6 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.azure.core.credential.TokenCredential;
-import com.microsoft.kiota.authentication.BaseBearerTokenAuthenticationProvider;
 
 /** Implementation of AuthenticationProvider that supports implementations of TokenCredential from Azure.Identity. */
 public class AzureIdentityAuthenticationProvider extends BaseBearerTokenAuthenticationProvider {

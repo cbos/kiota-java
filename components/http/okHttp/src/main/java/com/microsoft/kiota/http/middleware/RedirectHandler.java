@@ -101,7 +101,7 @@ public class RedirectHandler implements Interceptor{
         // is potentially annoying to the application layer since they have no
         // way to retain them.
         boolean sameScheme = locationUrl.scheme().equalsIgnoreCase(requestUrl.scheme());
-        boolean sameHost = locationUrl.host().toString().equalsIgnoreCase(requestUrl.host().toString());
+        boolean sameHost = locationUrl.host().equalsIgnoreCase(requestUrl.host());
         if (!sameScheme || !sameHost) {
             requestBuilder.removeHeader("Authorization");
         }

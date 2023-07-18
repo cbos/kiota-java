@@ -19,9 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import com.microsoft.kiota.serialization.mocks.TestEntity;
 
-public class FormSerializationWriterTests {
+class FormSerializationWriterTests {
 	@Test
-	public void writesSampleObjectValue() throws IOException, UnsupportedEncodingException {
+	void writesSampleObjectValue() throws IOException, UnsupportedEncodingException {
 		final var testEntity = new TestEntity() {{
 			setId("48d31887-5fad-4d73-a9f5-3c356e68a038");
 			setWorkDuration(PeriodAndDuration.parse("P1M"));
@@ -55,7 +55,7 @@ public class FormSerializationWriterTests {
 		}
 	}
 	@Test
-	public void writesSampleCollectionOfObjectValues() throws IOException {
+	void writesSampleCollectionOfObjectValues() throws IOException {
 		final var testEntity = new TestEntity() {{
 			setId("48d31887-5fad-4d73-a9f5-3c356e68a038");
 			setWorkDuration(PeriodAndDuration.parse("P1M"));
@@ -68,7 +68,7 @@ public class FormSerializationWriterTests {
 		}
 	}
 	@Test
-	public void writesNestedObjectValuesInAdditionalData() throws IOException {
+	void writesNestedObjectValuesInAdditionalData() throws IOException {
 		final var testEntity = new TestEntity() {{
 			setId("48d31887-5fad-4d73-a9f5-3c356e68a038");
 			setWorkDuration(PeriodAndDuration.parse("P1M"));

@@ -7,7 +7,9 @@ import com.microsoft.kiota.RequestOption;
 /** Holds the tracing, metrics and logging configuration for the request adapter */
 public class ObservabilityOptions implements RequestOption {
 	/** Creates a new instance of the observability options */
-	public ObservabilityOptions() { }
+	public ObservabilityOptions() {
+		// Default Constructor
+	}
 	private boolean includeEUIIAttributes;
 	
 	/**

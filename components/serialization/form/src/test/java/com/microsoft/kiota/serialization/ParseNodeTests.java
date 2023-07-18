@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import com.microsoft.kiota.serialization.mocks.TestEntity;
 
-public class ParseNodeTests {
+class ParseNodeTests {
 	private static final String testUserForm = "displayName=Megan+Bowen&" +
                                         "numbers=one,two,thirtytwo&" +
                                         "givenName=Megan&" +
@@ -36,7 +36,7 @@ public class ParseNodeTests {
 										"otherPhones=123456789&otherPhones=987654321&" + //collection property for additionalData
                                         "id=48d31887-5fad-4d73-a9f5-3c356e68a038";
 	@Test
-	public void getsEntityValueFromForm() {
+	void getsEntityValueFromForm() {
 		final FormParseNode parseNode = new FormParseNode(testUserForm);
 		final TestEntity entity = parseNode.getObjectValue(TestEntity::createFromDiscriminatorValue);
 		assertNotNull(entity);
@@ -54,19 +54,19 @@ public class ParseNodeTests {
 		assertEquals("2017-09-04", entity.getBirthDay().toString());
 	}
 	@Test
-	public void getCollectionOfObjectValuesFromForm() {
+	void getCollectionOfObjectValuesFromForm() {
 		final FormParseNode parseNode = new FormParseNode(testUserForm);
 		assertThrows(RuntimeException.class, () ->  parseNode.getCollectionOfObjectValues(TestEntity::createFromDiscriminatorValue));
 	}
 	@Test
-	public void returnsDefaultIfChildNodeDoesNotExist() {
+	void returnsDefaultIfChildNodeDoesNotExist() {
 		final FormParseNode parseNode = new FormParseNode(testUserForm);
 		final ParseNode childNode = parseNode.getChildNode("doesNotExist");
 		assertNull(childNode);
 	}
 
 	@Test
-	public void getCollectionOfBooleanPrimitiveValuesFromForm()
+	void getCollectionOfBooleanPrimitiveValuesFromForm()
 	{
 		final String TestFormData = "bools=true&" +
 				"bools=false";
@@ -78,7 +78,7 @@ public class ParseNodeTests {
 	}
 
 	@Test
-	public void getCollectionOfGuidPrimitiveValuesFromForm()
+	void getCollectionOfGuidPrimitiveValuesFromForm()
 	{
 		final String TestFormData = "ids=48d31887-5fad-4d73-a9f5-3c356e68a038&" +
 				"ids=48d31887-5fad-4d73-a9f5-3c356e68a038";

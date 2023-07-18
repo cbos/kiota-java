@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.net.URISyntaxException;
 import java.util.HashSet;
 
-public class ApiKeyAuthenticationProviderTest {
+class ApiKeyAuthenticationProviderTest {
 	@Test
-	public void DefensivePrograming() {
+	void DefensivePrograming() {
 		assertThrows(IllegalArgumentException.class, () -> new ApiKeyAuthenticationProvider("", "paramName", ApiKeyLocation.QUERY_PARAMETER));
 		assertThrows(IllegalArgumentException.class, () -> new ApiKeyAuthenticationProvider("key", "", ApiKeyLocation.QUERY_PARAMETER));
 
@@ -20,7 +20,7 @@ public class ApiKeyAuthenticationProviderTest {
 	}
 
 	@Test
-	public void AddsInQueryParameter() throws IllegalStateException, URISyntaxException {
+	void AddsInQueryParameter() throws IllegalStateException, URISyntaxException {
 		var value = new ApiKeyAuthenticationProvider("key", "param", ApiKeyLocation.QUERY_PARAMETER);
 		var request = new RequestInformation() {{
 			urlTemplate = "https://localhost{?param1}";
@@ -31,7 +31,7 @@ public class ApiKeyAuthenticationProviderTest {
 	}
 
 	@Test
-	public void AddsInQueryParameterWithOtherParameters() throws IllegalStateException, URISyntaxException {
+	void AddsInQueryParameterWithOtherParameters() throws IllegalStateException, URISyntaxException {
 		var value = new ApiKeyAuthenticationProvider("key", "param", ApiKeyLocation.QUERY_PARAMETER);
 		var request = new RequestInformation() {{
 			urlTemplate = "https://localhost{?param1}";
@@ -42,7 +42,7 @@ public class ApiKeyAuthenticationProviderTest {
 		assertEquals("https://localhost?param1=value1&param=key", request.getUri().toString());
 	}
 	@Test
-	public void AddsInHeaders() throws IllegalStateException, URISyntaxException {
+	void AddsInHeaders() throws IllegalStateException, URISyntaxException {
 		var value = new ApiKeyAuthenticationProvider("key", "param", ApiKeyLocation.HEADER);
 		var request = new RequestInformation() {{
 			urlTemplate = "https://localhost{?param1}";

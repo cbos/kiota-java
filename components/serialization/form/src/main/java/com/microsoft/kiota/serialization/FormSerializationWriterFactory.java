@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 public class FormSerializationWriterFactory implements SerializationWriterFactory {
     /** Instantiates a new factory */
     public FormSerializationWriterFactory() {
+        // Default Constructor
     }
     @Nonnull
     public String getValidContentType() {

@@ -13,7 +13,9 @@ import javax.annotation.Nonnull;
 /** Creates new Json parse nodes from the payload. */
 public class JsonParseNodeFactory implements ParseNodeFactory {
     /** Creates a new factory */
-    public JsonParseNodeFactory() {}
+    public JsonParseNodeFactory() {
+        // Default Constructor
+    }
     /** {@inheritDoc} */
     @Nonnull
     public String getValidContentType() {

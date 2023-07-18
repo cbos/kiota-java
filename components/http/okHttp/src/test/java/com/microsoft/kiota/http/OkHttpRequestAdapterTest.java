@@ -42,10 +42,10 @@ import okhttp3.ResponseBody;
 
 import com.microsoft.kiota.ApiException;
 
-public class OkHttpRequestAdapterTest {
+class OkHttpRequestAdapterTest {
 	@ParameterizedTest
 	@EnumSource(value = HttpMethod.class, names = {"PUT", "POST", "PATCH"})
-	public void PostRequestsShouldHaveEmptyBody(HttpMethod method) throws Exception { // Unexpected exception thrown: java.lang.IllegalArgumentException: method POST must have a request body.
+	void PostRequestsShouldHaveEmptyBody(HttpMethod method) throws Exception { // Unexpected exception thrown: java.lang.IllegalArgumentException: method POST must have a request body.
 		final var authenticationProviderMock = mock(AuthenticationProvider.class);
 		final var adapter = new OkHttpRequestAdapter(authenticationProviderMock) {
 			public Request test() throws Exception {
@@ -63,7 +63,7 @@ public class OkHttpRequestAdapterTest {
 	}
 	@ParameterizedTest
 	@ValueSource(ints = {200, 201, 202, 203, 206})
-	public void SendStreamReturnsUsableStream(int statusCode) throws Exception {
+	void SendStreamReturnsUsableStream(int statusCode) throws Exception {
 		final var authenticationProviderMock = mock(AuthenticationProvider.class);
 		when(authenticationProviderMock.authenticateRequest(any(RequestInformation.class), any(Map.class))).thenReturn(CompletableFuture.completedFuture(null));
 		final var text = "my-demo-text";
@@ -93,7 +93,7 @@ public class OkHttpRequestAdapterTest {
 	}
 	@ParameterizedTest
 	@ValueSource(ints = {200, 201, 202, 203, 204})
-	public void SendStreamReturnsNullOnNoContent(int statusCode) throws Exception {
+	void SendStreamReturnsNullOnNoContent(int statusCode) throws Exception {
 		final var authenticationProviderMock = mock(AuthenticationProvider.class);
 		when(authenticationProviderMock.authenticateRequest(any(RequestInformation.class), any(Map.class))).thenReturn(CompletableFuture.completedFuture(null));
 		final var client = getMockClient(new Response.Builder()
@@ -113,7 +113,7 @@ public class OkHttpRequestAdapterTest {
 	}
 	@ParameterizedTest
 	@ValueSource(ints = {200, 201, 202, 203, 204, 205})
-	public void SendReturnsNullOnNoContent(int statusCode) throws Exception {
+	void SendReturnsNullOnNoContent(int statusCode) throws Exception {
 		final var authenticationProviderMock = mock(AuthenticationProvider.class);
 		when(authenticationProviderMock.authenticateRequest(any(RequestInformation.class), any(Map.class))).thenReturn(CompletableFuture.completedFuture(null));
 		final var client = getMockClient(new Response.Builder()
@@ -135,7 +135,7 @@ public class OkHttpRequestAdapterTest {
 	}
 	@ParameterizedTest
 	@ValueSource(ints = {200, 201, 202, 203})
-	public void SendReturnsObjectOnContent(int statusCode) throws Exception {
+	void SendReturnsObjectOnContent(int statusCode) throws Exception {
 		final var authenticationProviderMock = mock(AuthenticationProvider.class);
 		when(authenticationProviderMock.authenticateRequest(any(RequestInformation.class), any(Map.class))).thenReturn(CompletableFuture.completedFuture(null));
 		final var client = getMockClient(new Response.Builder()
@@ -161,7 +161,7 @@ public class OkHttpRequestAdapterTest {
 		assertNotNull(response);
 	}
 	@Test
-	public void throwsAPIException() throws Exception  {
+	void throwsAPIException() throws Exception  {
 		final var authenticationProviderMock = mock(AuthenticationProvider.class);
 		when(authenticationProviderMock.authenticateRequest(any(RequestInformation.class), any(Map.class))).thenReturn(CompletableFuture.completedFuture(null));
 		final var client = getMockClient(new Response.Builder()

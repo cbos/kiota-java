@@ -10,7 +10,9 @@ import javax.annotation.Nonnull;
 /** Utility methods to reduce the amount of code being generated. */
 public class ParseNodeHelper {
 	/** Default constructor */
-	public ParseNodeHelper() {}
+	public ParseNodeHelper() {
+		// Default constructor
+	}
 	/**
 	 * Merges the given fields deserializers for an intersection type into a single collection.
 	 * @param targets The collection of deserializers to merge.

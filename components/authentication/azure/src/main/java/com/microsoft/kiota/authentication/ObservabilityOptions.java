@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 public class ObservabilityOptions {
 	/** default constructor */
 	public ObservabilityOptions() {
+		// Default Constructor
 	}
 	/**
 	 * Gets the instrumentation name for the tracer

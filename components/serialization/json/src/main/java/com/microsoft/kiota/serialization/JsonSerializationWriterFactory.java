@@ -7,7 +7,9 @@ import javax.annotation.Nonnull;
 /** Creates new Json serialization writers. */
 public class JsonSerializationWriterFactory implements SerializationWriterFactory {
     /** Creates a new factory */
-    public JsonSerializationWriterFactory() {}
+    public JsonSerializationWriterFactory() {
+        // Default Constructor
+    }
     /** {@inheritDoc} */
     @Nonnull
     public String getValidContentType() {

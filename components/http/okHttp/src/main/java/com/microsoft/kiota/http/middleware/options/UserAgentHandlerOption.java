@@ -9,7 +9,9 @@ import com.microsoft.kiota.RequestOption;
 /** The options for the user agent handler */
 public class UserAgentHandlerOption implements RequestOption {
 	/** Creates a new instance of the user agent handler option */
-	public UserAgentHandlerOption() { }
+	public UserAgentHandlerOption() {
+		// Default Constructor
+	}
 	private boolean enabled = true;
 	@Nonnull
 	private String productName = "kiota-java";

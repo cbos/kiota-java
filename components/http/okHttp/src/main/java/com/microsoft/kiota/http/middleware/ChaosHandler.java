@@ -21,7 +21,9 @@ import io.opentelemetry.context.Scope;
  */
 public class ChaosHandler implements Interceptor {
     /** Creates a new instance of the chaos handler */
-    public ChaosHandler() { }
+    public ChaosHandler() {
+        // Default Constructor
+    }
     /**
      * constant string being used
      */
