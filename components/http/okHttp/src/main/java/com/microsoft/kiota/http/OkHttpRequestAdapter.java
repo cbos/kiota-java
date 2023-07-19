@@ -642,6 +642,7 @@ public class OkHttpRequestAdapter implements com.microsoft.kiota.RequestAdapter 
         }
     }
     private final static String claimsKey = "claims";
+    private final static String contentLength = "Content-Length";
     private CompletableFuture<Response> getHttpResponseMessage(@Nonnull final RequestInformation requestInfo, @Nonnull final Span parentSpan, @Nonnull final Span spanForAttributes, @Nullable final String claims) {
         Objects.requireNonNull(requestInfo, "parameter requestInfo cannot be null");
         final Span span = GlobalOpenTelemetry.getTracer(obsOptions.getTracerInstrumentationName()).spanBuilder("getHttpResponseMessage").setParent(Context.current().with(parentSpan)).startSpan();
@@ -667,12 +668,12 @@ public class OkHttpRequestAdapter implements com.microsoft.kiota.RequestAdapter 
                 }
             })
             .thenApply(x -> {
-                final String contentLengthHeaderValue = getHeaderValue(x, "Content-Length");
+                final String contentLengthHeaderValue = getHeaderValue(x, contentLength);
                 if(contentLengthHeaderValue != null && !contentLengthHeaderValue.isEmpty()) {
                     final Integer contentLengthHeaderValueAsInt = Integer.parseInt(contentLengthHeaderValue);
                     spanForAttributes.setAttribute(SemanticAttributes.HTTP_RESPONSE_CONTENT_LENGTH, contentLengthHeaderValueAsInt);
                 }
-                final String contentTypeHeaderValue = getHeaderValue(x, "Content-Length");
+                final String contentTypeHeaderValue = getHeaderValue(x, contentLength);
                 if(contentTypeHeaderValue != null && !contentTypeHeaderValue.isEmpty()) {
                     spanForAttributes.setAttribute("http.response_content_type", contentTypeHeaderValue);
                 }
@@ -687,7 +688,7 @@ public class OkHttpRequestAdapter implements com.microsoft.kiota.RequestAdapter 
     }
     private String getHeaderValue(final Response response, String key) {
         final List<String> headerValue = response.headers().values(key);
-        if(headerValue != null && headerValue.size() > 0) {
+        if(headerValue != null && !headerValue.isEmpty()) {
             final String firstEntryValue = headerValue.get(0);
             if(firstEntryValue != null && !firstEntryValue.isEmpty()) {
                 return firstEntryValue;
@@ -695,8 +696,8 @@ public class OkHttpRequestAdapter implements com.microsoft.kiota.RequestAdapter 
         }
         return null;
     }
-    private final static Pattern bearerPattern = Pattern.compile("^Bearer\\s.*", Pattern.CASE_INSENSITIVE);
-    private final static Pattern claimsPattern = Pattern.compile("\\s?claims=\"([^\"]+)\"", Pattern.CASE_INSENSITIVE);
+    private static final Pattern bearerPattern = Pattern.compile("^Bearer\\s.*", Pattern.CASE_INSENSITIVE);
+    private static final Pattern claimsPattern = Pattern.compile("\\s?claims=\"([^\"]+)\"", Pattern.CASE_INSENSITIVE);
     /** Key used for events when an authentication challenge is returned by the API */
     @Nonnull
     public static final String authenticateChallengedEventKey = "com.microsoft.kiota.authenticate_challenge_received";
@@ -848,8 +849,8 @@ public class OkHttpRequestAdapter implements com.microsoft.kiota.RequestAdapter 
             }
             requestBuilder.tag(Span.class, parentSpan);
             final Request request = requestBuilder.build();
-            final List<String> contentLengthHeader = request.headers().values("Content-Length");
-            if(contentLengthHeader != null && contentLengthHeader.size() > 0) {
+            final List<String> contentLengthHeader = request.headers().values(contentLength);
+            if(contentLengthHeader != null && !contentLengthHeader.isEmpty()) {
                 final String firstEntryValue = contentLengthHeader.get(0);
                 if(firstEntryValue != null && !firstEntryValue.isEmpty()) {
                     spanForAttributes.setAttribute(SemanticAttributes.HTTP_REQUEST_CONTENT_LENGTH, Long.parseLong(firstEntryValue));

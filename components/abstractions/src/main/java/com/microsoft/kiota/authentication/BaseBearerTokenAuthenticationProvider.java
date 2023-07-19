@@ -21,8 +21,8 @@ public class BaseBearerTokenAuthenticationProvider implements AuthenticationProv
         this.accessTokenProvider = Objects.requireNonNull(accessTokenProvider);
     }
     private final AccessTokenProvider accessTokenProvider;
-    private final static String authorizationHeaderKey = "Authorization";
-    private final static String ClaimsKey = "claims";
+    private static final String authorizationHeaderKey = "Authorization";
+    private static final String ClaimsKey = "claims";
     @Nonnull
     public CompletableFuture<Void> authenticateRequest(@Nonnull final RequestInformation request, @Nullable final Map<String, Object> additionalAuthenticationContext) {
         Objects.requireNonNull(request);

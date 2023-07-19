@@ -20,7 +20,7 @@ public class FormParseNodeFactory implements ParseNodeFactory {
     public String getValidContentType() {
         return validContentType;
     }
-    private final static String validContentType = "application/x-www-form-urlencoded";
+    private static final String validContentType = "application/x-www-form-urlencoded";
     @Override
     @Nonnull
     public ParseNode getParseNode(@Nonnull final String contentType, @Nonnull final InputStream rawResponse) {

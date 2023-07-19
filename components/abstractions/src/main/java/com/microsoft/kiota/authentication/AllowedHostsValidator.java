@@ -36,7 +36,7 @@ public class AllowedHostsValidator {
      * @param allowedHosts the allowed hosts.
      */
     public void setAllowedHosts(@Nonnull final Set<String> allowedHosts) {
-        validHosts = new HashSet<String>();
+        validHosts = new HashSet<>();
         if(allowedHosts != null) {
             for (final String host : allowedHosts) {
                 if (host != null && !host.isEmpty())

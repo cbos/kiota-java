@@ -12,7 +12,7 @@ public class BackingStoreSerializationWriterProxyFactory extends SerializationWr
      */
     public BackingStoreSerializationWriterProxyFactory(@Nonnull final SerializationWriterFactory concrete) {
         super(concrete,
-        (x) -> {
+        x -> {
             if(x instanceof BackedModel) {
                 final BackedModel backedModel = (BackedModel)x;
                 final BackingStore backingStore = backedModel.getBackingStore();
@@ -20,7 +20,7 @@ public class BackingStoreSerializationWriterProxyFactory extends SerializationWr
                     backingStore.setReturnOnlyChangedValues(true);
                 }
             }
-        },(x) -> {
+        }, x -> {
             if(x instanceof BackedModel) {
                 final BackedModel backedModel = (BackedModel)x;
                 final BackingStore backingStore = backedModel.getBackingStore();

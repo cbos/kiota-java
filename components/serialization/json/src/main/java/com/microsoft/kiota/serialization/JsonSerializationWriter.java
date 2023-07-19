@@ -2,7 +2,6 @@ package com.microsoft.kiota.serialization;
 
 import com.microsoft.kiota.PeriodAndDuration;
 
-import java.lang.Enum;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.io.ByteArrayInputStream;
@@ -36,6 +35,7 @@ import com.google.gson.stream.JsonWriter;
 public class JsonSerializationWriter implements SerializationWriter {
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
     private final JsonWriter writer;
+    private static final String SERIALIZATION_FAIL_MESSAGE = "could not serialize value";
     /** Creates a new instance of a json serialization writer */
     public JsonSerializationWriter() {
         this.writer = new JsonWriter(new OutputStreamWriter(this.stream, StandardCharsets.UTF_8));
@@ -48,7 +48,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeBooleanValue(@Nullable final String key, @Nullable final Boolean value) {
@@ -59,7 +59,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeShortValue(@Nullable final String key, @Nullable final Short value) {
@@ -70,7 +70,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeByteValue(@Nullable final String key, @Nullable final Byte value) {
@@ -81,7 +81,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeBigDecimalValue(@Nullable final String key, @Nullable final BigDecimal value) {
@@ -92,7 +92,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeIntegerValue(@Nullable final String key, @Nullable final Integer value) {
@@ -103,7 +103,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeFloatValue(@Nullable final String key, @Nullable final Float value) {
@@ -114,7 +114,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeDoubleValue(@Nullable final String key, @Nullable final Double value) {
@@ -125,7 +125,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeLongValue(@Nullable final String key, @Nullable final Long value) {
@@ -136,7 +136,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value);
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeUUIDValue(@Nullable final String key, @Nullable final UUID value) {
@@ -147,7 +147,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value.toString());
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeOffsetDateTimeValue(@Nullable final String key, @Nullable final OffsetDateTime value) {
@@ -158,7 +158,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeLocalDateValue(@Nullable final String key, @Nullable final LocalDate value) {
@@ -169,7 +169,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value.format(DateTimeFormatter.ISO_LOCAL_DATE));
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writeLocalTimeValue(@Nullable final String key, @Nullable final LocalTime value) {
@@ -180,7 +180,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value.format(DateTimeFormatter.ISO_LOCAL_TIME));
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public void writePeriodAndDurationValue(@Nullable final String key, @Nullable final PeriodAndDuration value) {
@@ -191,7 +191,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
                 writer.value(value.toString());
             } catch (IOException ex) {
-                throw new RuntimeException("could not serialize value", ex);
+                throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
             }
     }
     public <T> void writeCollectionOfPrimitiveValues(@Nullable final String key, @Nullable final Iterable<T> values) {
@@ -207,7 +207,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 writer.endArray();
             }
         } catch (IOException ex) {
-            throw new RuntimeException("could not serialize value", ex);
+            throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
         }
     }
     public <T extends Parsable> void writeCollectionOfObjectValues(@Nullable final String key, @Nullable final Iterable<T> values) {
@@ -223,7 +223,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 writer.endArray();
             }
         } catch (IOException ex) {
-            throw new RuntimeException("could not serialize value", ex);
+            throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
         }
     }
     public <T extends Enum<T>> void writeCollectionOfEnumValues(@Nullable final String key, @Nullable final Iterable<T> values) {
@@ -239,7 +239,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 writer.endArray();
             }
         } catch (IOException ex) {
-            throw new RuntimeException("could not serialize value", ex);
+            throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
         }
     }
     public <T extends Parsable> void writeObjectValue(@Nullable final String key, @Nullable final T value, @Nonnull final Parsable ...additionalValuesToMerge) {
@@ -283,7 +283,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                 }
             }
         } catch (IOException ex) {
-            throw new RuntimeException("could not serialize value", ex);
+            throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
         }
     }
     public <T extends Enum<T>> void writeEnumSetValue(@Nullable final String key, @Nullable final EnumSet<T> values) {
@@ -306,7 +306,7 @@ public class JsonSerializationWriter implements SerializationWriter {
             }
             writer.nullValue();
         } catch (IOException ex) {
-            throw new RuntimeException("could not serialize value", ex);
+            throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
         }
     }
     private <T extends Enum<T>> String getStringValueFromValuedEnum(final T value) {
@@ -347,7 +347,7 @@ public class JsonSerializationWriter implements SerializationWriter {
                     this.writeAnyValue(oProp.getName(), oProp.get(value));
             }
         } catch (IOException | IllegalAccessException ex) {
-            throw new RuntimeException("could not serialize value", ex);
+            throw new RuntimeException(SERIALIZATION_FAIL_MESSAGE, ex);
         }
     }
     private void writeAnyValue(@Nullable final String key, @Nullable final Object value) {

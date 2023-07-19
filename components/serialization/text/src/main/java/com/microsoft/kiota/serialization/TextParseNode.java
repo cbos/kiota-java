@@ -2,7 +2,6 @@ package com.microsoft.kiota.serialization;
 
 import com.microsoft.kiota.PeriodAndDuration;
 
-import java.lang.UnsupportedOperationException;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,7 +20,7 @@ import javax.annotation.Nullable;
 /** ParseNode implementation for text/plain */
 public class TextParseNode implements ParseNode {
     private final String text;
-    private final static String NO_STRUCTURED_DATA_MESSAGE = "text does not support structured data";
+    private static final String NO_STRUCTURED_DATA_MESSAGE = "text does not support structured data";
     /**
      * Initializes a new instance of the {@link TextParseNode} class.
      * @param rawText the raw text to parse.

@@ -21,7 +21,7 @@ public class JsonParseNodeFactory implements ParseNodeFactory {
     public String getValidContentType() {
         return validContentType;
     }
-    private final static String validContentType = "application/json";
+    private static final String validContentType = "application/json";
     /** {@inheritDoc} */
     @Override
     @Nonnull

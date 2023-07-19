@@ -139,7 +139,7 @@ public class FormSerializationWriter implements SerializationWriter {
             throw new RuntimeException("serialization of complex properties is not supported with form encoding");
         depth++;
         final List<Parsable> nonNullAdditionalValuesToMerge = Stream.of(additionalValuesToMerge).filter(Objects::nonNull).collect(Collectors.toList());
-        if(value != null || nonNullAdditionalValuesToMerge.size() > 0) {
+        if(value != null || !nonNullAdditionalValuesToMerge.isEmpty()) {
             if(onBeforeObjectSerialization != null && value != null) {
                 onBeforeObjectSerialization.accept(value);
             }

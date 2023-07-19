@@ -127,13 +127,13 @@ public class RetryHandler implements Interceptor{
         } else if(retryDelay == -1) {
             retryDelay = exponentialBackOffDelay(delay, executionCount);
         }
-        return (long)Math.min(retryDelay, RetryHandlerOption.MAX_DELAY * DELAY_MILLISECONDS);
+        return (long)Math.min(retryDelay, RetryHandlerOption.MAX_DELAY * (double)DELAY_MILLISECONDS);
     }
 
     double tryParseTimeHeader(String retryAfterHeader){
         double retryDelay = -1;
         try {
-            retryDelay =  Integer.parseInt(retryAfterHeader) * DELAY_MILLISECONDS;
+            retryDelay =  Integer.parseInt(retryAfterHeader) * (double)DELAY_MILLISECONDS;
         } catch (NumberFormatException e) {
             return retryDelay;
         }
@@ -156,9 +156,9 @@ public class RetryHandler implements Interceptor{
     }
 
     private double exponentialBackOffDelay(double delay, int executionCount) {
-        double retryDelay = RetryHandlerOption.DEFAULT_DELAY * DELAY_MILLISECONDS;
-        retryDelay = (double)((Math.pow(2.0, (double)executionCount)-1)*0.5);
-        retryDelay = (executionCount < 2 ? delay : retryDelay + delay) + (double)Math.random();
+        double retryDelay = (double)RetryHandlerOption.DEFAULT_DELAY * DELAY_MILLISECONDS;
+        retryDelay = ((Math.pow(2.0, executionCount)-1)*0.5);
+        retryDelay = (executionCount < 2 ? delay : retryDelay + delay) + Math.random();
         retryDelay *= DELAY_MILLISECONDS;
         return retryDelay;
     }

@@ -36,7 +36,7 @@ public class UserAgentHandler implements Interceptor {
             _userAgentOption = userAgentHandlerOption;
         }
     }
-    private final static String USER_AGENT_HEADER_NAME = "User-Agent";
+    private static final String USER_AGENT_HEADER_NAME = "User-Agent";
     /* @inheritdoc */
     @Override
 	@SuppressWarnings("UnknownNullness")

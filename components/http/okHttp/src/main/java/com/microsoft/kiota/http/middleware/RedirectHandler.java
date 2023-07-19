@@ -49,7 +49,7 @@ public class RedirectHandler implements Interceptor{
         }
     }
 
-    boolean isRedirected(@Nonnull final Request request, @Nonnull final Response response, int redirectCount, @Nonnull final RedirectHandlerOption redirectOption) throws IOException {
+    boolean isRedirected(@Nonnull final Request request, @Nonnull final Response response, int redirectCount, @Nonnull final RedirectHandlerOption redirectOption) {
         Objects.requireNonNull(request, "parameter request cannot be null");
         Objects.requireNonNull(response, "parameter response cannot be null");
         Objects.requireNonNull(redirectOption, "parameter redirectOption cannot be null");
@@ -75,7 +75,7 @@ public class RedirectHandler implements Interceptor{
 
     Request getRedirect(
             final Request request,
-            final Response userResponse) throws ProtocolException {
+            final Response userResponse) {
         String location = userResponse.header("Location");
         if (location == null || location.length() == 0) return null;
 
@@ -117,7 +117,7 @@ public class RedirectHandler implements Interceptor{
     // Intercept request and response made to network
     @Override
     @Nonnull
-	@SuppressWarnings("UnknownNullness")
+    @SuppressWarnings("UnknownNullness")
     public Response intercept(final Chain chain) throws IOException {
         Objects.requireNonNull(chain, "parameter chain cannot be null");
         Request request = chain.request();

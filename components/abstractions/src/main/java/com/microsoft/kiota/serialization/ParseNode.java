@@ -2,7 +2,6 @@ package com.microsoft.kiota.serialization;
 
 import com.microsoft.kiota.PeriodAndDuration;
 
-import java.lang.Enum;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.time.LocalDate;

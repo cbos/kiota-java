@@ -39,7 +39,7 @@ public abstract class SerializationWriterProxyFactory implements SerializationWr
         final Consumer<Parsable> originalBefore = writer.getOnBeforeObjectSerialization();
         final Consumer<Parsable> originalAfter = writer.getOnAfterObjectSerialization();
         final BiConsumer<Parsable, SerializationWriter> originalStart = writer.getOnStartObjectSerialization();
-        writer.setOnBeforeObjectSerialization((x) -> {
+        writer.setOnBeforeObjectSerialization(x -> {
             if(_onBefore != null) {
                 _onBefore.accept(x); // the callback set by the implementation (e.g. backing store)
             }
@@ -47,7 +47,7 @@ public abstract class SerializationWriterProxyFactory implements SerializationWr
                 originalBefore.accept(x); // some callback that might already be set on the target
             }
         });
-        writer.setOnAfterObjectSerialization((x) -> {
+        writer.setOnAfterObjectSerialization(x -> {
             if(_onAfter != null) {
                 _onAfter.accept(x);
             }

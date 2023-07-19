@@ -9,7 +9,6 @@ import com.microsoft.kiota.store.BackingStoreSerializationWriterProxyFactory;
 import com.microsoft.kiota.store.BackingStoreParseNodeFactory;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.NoSuchMethodException;
 
 import java.util.Objects;
 

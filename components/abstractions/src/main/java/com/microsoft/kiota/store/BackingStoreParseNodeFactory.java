@@ -13,7 +13,7 @@ public class BackingStoreParseNodeFactory extends ParseNodeProxyFactory {
     public BackingStoreParseNodeFactory(@Nonnull final ParseNodeFactory concrete) {
         super(
             concrete,
-            (x) -> {
+            x -> {
                 if(x instanceof BackedModel) {
                     final BackedModel backedModel = (BackedModel)x;
                     final BackingStore backingStore = backedModel.getBackingStore();
@@ -22,7 +22,7 @@ public class BackingStoreParseNodeFactory extends ParseNodeProxyFactory {
                     }
                 }
             },
-            (x) -> {
+            x -> {
                 if(x instanceof BackedModel) {
                     final BackedModel backedModel = (BackedModel)x;
                     final BackingStore backingStore = backedModel.getBackingStore();
